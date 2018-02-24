@@ -1,0 +1,21 @@
+{
+  "name": "tictactoe-pixi",
+  "version": "0.0.0",
+  "description": "A tic-tac-toe game using the PIXI framework",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "PIXI",
+    "FCC",
+    "tic-tac-toe"
+  ],
+  "author": "padedou",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
