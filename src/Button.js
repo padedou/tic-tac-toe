@@ -4,15 +4,17 @@ export default class Button extends PIXI.Sprite {
         this.text;
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
         this.interactive = true;
         this.on('click', this.clicked);
-        this.generateTextureAndText(width, height);
+        this.generateTextureAndText(this.width, this.height, 0xffffff);
     }
 
-    generateTextureAndText(width, height) {
+    generateTextureAndText(width, height, color) {
         // generate the texture
         const gfx = new PIXI.Graphics();
-        gfx.beginFill(0xffffff, 0.5);
+        gfx.beginFill(color, 0.5);
         gfx.drawRoundedRect(0, 0, width, height);
         gfx.endFill();
         this.texture = gfx.generateCanvasTexture();
@@ -34,5 +36,6 @@ export default class Button extends PIXI.Sprite {
 
     clicked() {
         console.log('Test button clicked');
+        this.generateTextureAndText(this.width, this.height, 0xff2323);
     }
 }
