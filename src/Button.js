@@ -6,7 +6,6 @@ export default class Button extends PIXI.Sprite {
     }
 
     create(x, y, width, height) {
-        console.log('Button create');
         // generate the texture
         const gfx = new PIXI.Graphics();
         gfx.beginFill(0xffffff, 0.5);
