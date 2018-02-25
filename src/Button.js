@@ -20,6 +20,8 @@ export default class Button extends PIXI.Sprite {
         // create the text object
         this.text = new PIXI.Text();
         this.text.anchor = new PIXI.Point(0.5, 0.5);
+        this.text.x = this.width / 2;
+        this.text.y = this.height / 2;
         this.addChild(this.text);
 
         this.interactive = true;
