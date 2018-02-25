@@ -10,15 +10,12 @@ export default class Button extends PIXI.Sprite {
         // generate the texture
         const gfx = new PIXI.Graphics();
         gfx.beginFill(0xffffff, 0.5);
-        gfx.drawRoundedRect(0, 0, width, height, height / 5);
+        gfx.drawRoundedRect(0, 0, width, height);
         gfx.endFill();
         this.texture = gfx.generateCanvasTexture();
 
-        // set the x, y and anchor
         this.x = x;
         this.y = y;
-        this.anchor.x = 0.5;
-        this.anchor.y = 0.5;
 
         // create the text object
         this.text = new PIXI.Text();
