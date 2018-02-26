@@ -1,3 +1,6 @@
+// Code based on the example:
+// https://sprite-storm.com/tutorial/pixi-tutorial/dynamic-button-class-pixi-js/
+
 export default class Button extends PIXI.Sprite {
     constructor(x, y, width, height, counter) {
         super();
