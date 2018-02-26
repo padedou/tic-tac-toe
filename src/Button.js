@@ -2,7 +2,7 @@
 // https://sprite-storm.com/tutorial/pixi-tutorial/dynamic-button-class-pixi-js/
 
 export default class Button extends PIXI.Sprite {
-    constructor(x, y, width, height, counter) {
+    constructor(x, y, width, height, color, alpha) {
         super();
         this.text;
         this.x = x;
@@ -11,13 +11,13 @@ export default class Button extends PIXI.Sprite {
         this.height = height;
         this.interactive = true;
         this.on('click', this.clicked);
-        this.generateTextureAndText(this.width, this.height, 0xffffff);
+        this.generateTextureAndText(this.width, this.height, color, alpha);
     }
 
     generateTextureAndText(width, height, color) {
         // generate the texture
         const gfx = new PIXI.Graphics();
-        gfx.beginFill(color, 0.5);
+        gfx.beginFill(color, alpha);
         gfx.drawRoundedRect(0, 0, width, height);
         gfx.endFill();
         this.texture = gfx.generateCanvasTexture();
