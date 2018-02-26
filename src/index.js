@@ -7,9 +7,4 @@ const app = new PIXI.Application({
     backgroundColor: 0x061639
 });
 
-const button = new Button(50, 50, 100, 100);
-
-button.setText("Test Button");
-app.stage.addChild(button);
-
 document.body.appendChild(app.view);
