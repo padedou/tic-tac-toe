@@ -12,7 +12,6 @@ export default class Button extends PIXI.Sprite {
         this.color = color;
         this.alpha = alpha;
         this.interactive = true;
-        this.on('click', this.clicked);
         this.generateTextureAndText(this.width, this.height, color, alpha, this.txtDescription);
     }
 
@@ -35,8 +34,5 @@ export default class Button extends PIXI.Sprite {
         text.text = this.txtDescription;
         
         this.addChild(text);
-    }
-
-    clicked() {
     }
 }
