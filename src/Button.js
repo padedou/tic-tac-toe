@@ -2,7 +2,7 @@
 // https://sprite-storm.com/tutorial/pixi-tutorial/dynamic-button-class-pixi-js/
 
 export default class Button extends PIXI.Sprite {
-    constructor(x = 0, y = 0, width = 100, height = 50, color = 0xfffffff, alpha = 1, txtDescription = 'Button') {
+    constructor(x = 0, y = 0, width = 100, height = 50, color = 0xfffffff, alpha = 1, txtDescription = 'Button', txtStyleOptions = {}) {
         super();
         this.x = x;
         this.y = y;
@@ -11,11 +11,12 @@ export default class Button extends PIXI.Sprite {
         this.txtDescription = txtDescription;
         this.color = color;
         this.alpha = alpha;
+        this.txtStyleOptions = txtStyleOptions;
         this.interactive = true;
-        this.generateTextureAndText(this.width, this.height, color, alpha, this.txtDescription);
+        this.generateTextureAndText(new PIXI.TextStyle(this.txtStyleOptions));
     }
 
-    generateTextureAndText() {
+    generateTextureAndText(txtStyle = new PIXI.TextStyle(this.txtStyleOptions)) {
         const gfx = new PIXI.Graphics();
         const text = new PIXI.Text();
 
@@ -32,7 +33,13 @@ export default class Button extends PIXI.Sprite {
         text.x = this.width / 2;
         text.y = this.height / 2;
         text.text = this.txtDescription;
+        text.style = txtStyle;
         
         this.addChild(text);
+    }
+
+    set txtStyle(styleProperties) {
+        this.txtStyleOptions = styleProperties;
+        this.generateTextureAndText();
     }
 }
