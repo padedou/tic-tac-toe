@@ -9,6 +9,7 @@ export default class StartScreen extends PIXI.Container {
 
         this.btnSelectX = new Button(0, appHeight / 2, appWidth / 2, 50, colorTile, 1, 'X', txtStyleButtons);
         this.btnSelectO = new Button(appWidth / 2, appHeight / 2, appWidth / 2, 50, colorTile, 1, 'O', txtStyleButtons);
+        this.txtSelect = new PIXI.Text();
         
         this.btnSelectX.on('mouseover', this.handleMouseOver);
         this.btnSelectO.on('mouseover', this.handleMouseOver);
@@ -21,6 +22,14 @@ export default class StartScreen extends PIXI.Container {
             setWhoIsPlaying(false);
         });
 
+        this.txtSelect.text = 'Select X or O';
+        this.txtSelect.style = new PIXI.TextStyle({ fill: colorText });
+        this.txtSelect.anchor = new PIXI.Point(0.5, 0.5);
+        this.txtSelect.x = appWidth / 2 - 15;
+        this.txtSelect.y = appHeight / 2 - 100;
+
+
+        this.addChild(this.txtSelect);
         this.addChild(this.btnSelectX);
         this.addChild(this.btnSelectO);
     }
