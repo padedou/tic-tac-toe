@@ -7,8 +7,8 @@ export default class StartScreen extends PIXI.Container {
     constructor(appWidth, appHeight, setWhoIsPlaying) {
         super();
 
-        this.btnSelectX = new Button(0, appHeight / 2, appWidth / 2, 50, colorTile, 1, 'X', txtStyleButtons);
-        this.btnSelectO = new Button(appWidth / 2, appHeight / 2, appWidth / 2, 50, colorTile, 1, 'O', txtStyleButtons);
+        this.btnSelectX = new Button(1, appHeight / 2, appWidth / 2 - 2, 50, colorTile, 1, 'X', txtStyleButtons);
+        this.btnSelectO = new Button(appWidth / 2 + 1, appHeight / 2, appWidth / 2 - 2, 50, colorTile, 1, 'O', txtStyleButtons);
         this.txtSelect = new PIXI.Text();
         
         this.btnSelectX.on('mouseover', this.handleMouseOver);
