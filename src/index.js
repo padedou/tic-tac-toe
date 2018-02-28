@@ -9,7 +9,7 @@ const app = new PIXI.Application({
     backgroundColor: 0x333333
 });
 let xIsPlaying = true;
-const startScreen = new StartScreen(app.renderer.width, app.renderer.height, setWhoIsPlaying);
+const startScreen = new StartScreen(app.renderer.width, app.renderer.height, setPlayerAndStart);
 
 app.stage.addChild(startScreen);
 
@@ -24,6 +24,7 @@ function moveMade() {
     xIsPlaying = !xIsPlaying;
 }
 
-function setWhoIsPlaying(x) {
+function setPlayerAndStart(x) {
     xIsPlaying = x;
+    // TODO: Change to the game screen.
 }
