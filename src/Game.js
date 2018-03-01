@@ -2,11 +2,13 @@ import { colorTile, colorLine } from './colors';
 import Tile from './Tile';
 
 export default class Game extends PIXI.Container {
-    constructor(appWidth, appHeight) {
+    constructor(appWidth, appHeight, getXIsPlaying, moveMade) {
         super();
 
         this.appWidth = appWidth;
         this.appHeight = appHeight;
+        this.getXIsPlaying = getXIsPlaying;
+        this.moveMade = moveMade;
 
         this.init();
     }
@@ -55,13 +57,28 @@ export default class Game extends PIXI.Container {
 
         for (let i = 0; i < 3; i++) {
             arrTiles.push(new Tile(
-                0, i * (tileHeight + lineWidth / 2 + 3), tileWidth, tileHeight
+                0,
+                i * (tileHeight + lineWidth / 2 + 3),
+                tileWidth,
+                tileHeight,
+                this.getXIsPlaying,
+                this.moveMade
             ));
             arrTiles.push(new Tile(
-                tileWidth + lineWidth, i * (tileHeight + lineWidth / 2 + 3), tileWidth - lineWidth / 2, tileHeight
+                tileWidth + lineWidth,
+                i * (tileHeight + lineWidth / 2 + 3),
+                tileWidth - lineWidth / 2,
+                tileHeight,
+                this.getXIsPlaying,
+                this.moveMade
             ));
             arrTiles.push(new Tile(
-                2 * tileWidth + lineWidth / 2 + lineWidth, i * (tileHeight + lineWidth / 2 + 3), tileWidth, tileHeight
+                2 * tileWidth + lineWidth / 2 + lineWidth,
+                i * (tileHeight + lineWidth / 2 + 3),
+                tileWidth,
+                tileHeight,
+                this.getXIsPlaying,
+                this.moveMade
             ));    
         }
 
