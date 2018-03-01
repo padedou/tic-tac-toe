@@ -1,4 +1,5 @@
 import { colorTile, colorLine } from './colors';
+import Tile from './Tile';
 
 export default class Game extends PIXI.Container {
     constructor(appWidth, appHeight) {
@@ -12,6 +13,10 @@ export default class Game extends PIXI.Container {
 
     init() {
         const lines = new PIXI.Graphics();
+        const arrTiles = [];
+        const lineWidth = 10;
+        const tileWidth = this.appWidth - (this.appWidth * 2/3) - lineWidth / 2;
+        const tileHeight = this.appHeight - (this.appHeight * 2/3) - lineWidth / 2; 
         // First vertical line's points
         const line_1_x1 = this.appWidth - (this.appWidth * 2/3);
         const line_1_y1 = 0;
@@ -33,7 +38,7 @@ export default class Game extends PIXI.Container {
         const line_4_x2 = this.appWidth;
         const line_4_y2 = line_4_y1;
 
-        lines.lineStyle(10, colorLine, 1);
+        lines.lineStyle(lineWidth, colorLine, 1);
 
         // Draw first vertical line
         lines.moveTo(line_1_x1, line_1_y1);
@@ -48,6 +53,22 @@ export default class Game extends PIXI.Container {
         lines.moveTo(line_4_x1, line_4_y1);
         lines.lineTo(line_4_x2, line_4_y2);
 
+        for (let i = 0; i < 3; i++) {
+            arrTiles.push(new Tile(
+                0, i * (tileHeight + lineWidth / 2 + 3), tileWidth, tileHeight
+            ));
+            arrTiles.push(new Tile(
+                tileWidth + lineWidth, i * (tileHeight + lineWidth / 2 + 3), tileWidth - lineWidth / 2, tileHeight
+            ));
+            arrTiles.push(new Tile(
+                2 * tileWidth + lineWidth / 2 + lineWidth, i * (tileHeight + lineWidth / 2 + 3), tileWidth, tileHeight
+            ));    
+        }
+
+        //this.addChild(lines);
+        arrTiles.forEach((tile) => {
+            this.addChild(tile);
+        });
         this.addChild(lines);
     }
 }
