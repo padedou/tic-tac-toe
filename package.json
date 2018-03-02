@@ -4,7 +4,7 @@
   "description": "A tic-tac-toe game using the PIXI framework",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -15,8 +15,9 @@
   "author": "padedou",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.10",
+    "webpack-dev-server": "^3.1.0"
   },
   "dependencies": {
     "pixi.js": "^4.7.0"
