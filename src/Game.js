@@ -82,6 +82,10 @@ export default class Game extends PIXI.Container {
             ));    
         }
 
+        for (let i = 0; i < arrTiles.length; i++) {
+            arrTiles[i].id = i;
+        }
+
         //this.addChild(lines);
         arrTiles.forEach((tile) => {
             this.addChild(tile);
