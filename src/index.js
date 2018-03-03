@@ -49,13 +49,10 @@ function moveMade(tile_id) {
     tiles[tile_id].x_o = xIsPlaying ? 'x' : 'o';
     checkGameEnd();
     xIsPlaying = !xIsPlaying;
-
-    //console.log(tiles[tile_id]);
 }
 
 function setPlayerAndStart(x) {
     xIsPlaying = x;
-    // TODO: Change to the game screen.
     app.stage.removeChildren();
     app.stage.addChild(game);
 }
@@ -70,11 +67,8 @@ function checkGameEnd() {
         const secondTileId = winningTilesTuple[1];
         const thirdTileId = winningTilesTuple[2];
 
-        console.log(`${firstTileId}, ${secondTileId}, ${thirdTileId}`);
-
         if (tiles[firstTileId].played && tiles[secondTileId].played && tiles[thirdTileId].played) {
             if (tiles[firstTileId].x_o === tiles[secondTileId].x_o && tiles[secondTileId].x_o === tiles[thirdTileId].x_o) {
-                console.log('WE HAVE A WINNER');
                 winner = tiles[firstTileId].x_o;
             }   
         }
