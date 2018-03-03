@@ -1,8 +1,8 @@
 import Button from './Button';
-import { colorTile, colorText } from './colors';
+import { colorTile, colorText, colorMarked } from './colors';
 
 export default class EndGame extends PIXI.Container {
-    constructor(appWidth, appHeight, gameResult = 'draw') {
+    constructor(appWidth, appHeight, gameResult = 'draw', showStartScreen) {
         super();
 
         this.appWidth = appWidth;
@@ -13,7 +13,17 @@ export default class EndGame extends PIXI.Container {
             fontWeight: 'bold',
             align: 'center'
         };
+        this.showStartScreen = showStartScreen;
         this.btnPlayAgain = new Button(this.appWidth / 3, this.appHeight / 2, appWidth / 4, 50, colorTile, 1, 'Restart', {fill: colorText});
+        this.btnPlayAgain.on('click', showStartScreen);
+        this.btnPlayAgain.on('mouseover', (e) => {
+            e.currentTarget.color = colorMarked;
+            e.currentTarget.generateTextureAndText();
+        });
+        this.btnPlayAgain.on('mouseout', (e) => {
+            e.currentTarget.color = colorTile;
+            e.currentTarget.generateTextureAndText();
+        });
 
         this.init();
     }
