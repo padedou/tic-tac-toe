@@ -57,8 +57,9 @@ function setPlayerAndStart(x) {
 }
 
 function checkGameEnd() {
-    let shouldEnd = false;
+    //let shouldEnd = false;
     let winner = '';
+    let playedTiles = 0;
 
     // Check if we have a winner
     winningTiles.forEach((winningTilesTuple) => {
@@ -72,4 +73,16 @@ function checkGameEnd() {
             }   
         }
     });
+
+    // Check if all tiles are played
+    tiles.forEach((tile) => {
+        if (tile.played) {
+            playedTiles++;
+        }
+    });
+
+    if (winner !== '' || playedTiles === 9) {
+        // game should end
+        console.log(`winner: ${winner}, playedTiles: ${playedTiles}`);
+    }
 }
