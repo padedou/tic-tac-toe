@@ -89,7 +89,7 @@ export default class Game extends PIXI.Container {
             arrTiles[i].id = i;
         }
 
-
+        // TODO: Maybe before adding childeren the container should be empty
         arrTiles.forEach((tile) => {
             this.addChild(tile);
         });
