@@ -44,7 +44,6 @@ function getXIsPlaying() {
 }
 
 function moveMade(tile_id) {
-    //console.log('moveMade called');
     tiles[tile_id].played = true;
     tiles[tile_id].x_o = xIsPlaying ? 'x' : 'o';
     checkGameEnd();

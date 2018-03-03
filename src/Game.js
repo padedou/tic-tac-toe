@@ -55,6 +55,7 @@ export default class Game extends PIXI.Container {
         lines.moveTo(line_4_x1, line_4_y1);
         lines.lineTo(line_4_x2, line_4_y2);
 
+        // Create 3 groups of 3 Tile instances each
         for (let i = 0; i < 3; i++) {
             arrTiles.push(new Tile(
                 0,
@@ -82,11 +83,13 @@ export default class Game extends PIXI.Container {
             ));    
         }
 
+        // Add an id proteperty for each tile.
+        // The id corresponds to the position each tile has on the game board.
         for (let i = 0; i < arrTiles.length; i++) {
             arrTiles[i].id = i;
         }
 
-        //this.addChild(lines);
+
         arrTiles.forEach((tile) => {
             this.addChild(tile);
         });
