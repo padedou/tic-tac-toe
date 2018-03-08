@@ -3,6 +3,7 @@ import Button from './Button';
 import Tile from './Tile';
 import StartScreen from './StartScreen';
 import Game from './Game';
+import EndGame from  './EndGame';
 
 const app = new PIXI.Application({
     //width: 330,
@@ -13,11 +14,13 @@ const app = new PIXI.Application({
 });
 let xIsPlaying = true;
 const startScreen = new StartScreen(app.renderer.width, app.renderer.height, setPlayerAndStart);
+const game = new Game(app.renderer.width, app.renderer.height, getXIsPlaying, moveMade);
+const endGame = new EndGame(app.renderer.width, app.renderer.height, undefined, showStartScreen);
 const tileState = {
     played: false,
     x_o: ''
 };
-const tiles = [];
+let tiles = [];
 const winningTiles = [
     [0, 1, 2],
     [3, 4, 5],
@@ -28,16 +31,27 @@ const winningTiles = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-const game = new Game(app.renderer.width, app.renderer.height, getXIsPlaying, moveMade);
-
-for (let i = 0; i < 9; i++) {
-    tiles.push({} = {...tileState});
-}
 
 //app.stage.addChild(startScreen);
-app.stage.addChild(game);
+//app.stage.addChild(game);
+//app.stage.addChild(endGame);
+
+showStartScreen();
 
 document.body.appendChild(app.view);
+
+function initTiles() {
+    tiles = [];
+    for (let i = 0; i < 9; i++) {
+        tiles.push({} = {...tileState});
+    }
+}
+
+function showStartScreen() {
+    initTiles();
+    app.stage.removeChildren();
+    app.stage.addChild(startScreen);
+}
 
 function getXIsPlaying() {
     return true && xIsPlaying;
@@ -46,17 +60,18 @@ function getXIsPlaying() {
 function moveMade(tile_id) {
     tiles[tile_id].played = true;
     tiles[tile_id].x_o = xIsPlaying ? 'x' : 'o';
-    checkGameEnd();
+    checkGameEnd(xIsPlaying);
     xIsPlaying = !xIsPlaying;
 }
 
 function setPlayerAndStart(x) {
     xIsPlaying = x;
+    game.init();
     app.stage.removeChildren();
     app.stage.addChild(game);
 }
 
-function checkGameEnd() {
+function checkGameEnd(xWasPlaying) {
     //let shouldEnd = false;
     let winner = '';
     let playedTiles = 0;
@@ -83,6 +98,19 @@ function checkGameEnd() {
 
     if (winner !== '' || playedTiles === 9) {
         // game should end
+
         console.log(`winner: ${winner}, playedTiles: ${playedTiles}`);
+
+        if (winner === 'x' && xWasPlaying) {
+            endGame.init('won')
+        } else if (winner === 'o' && !xWasPlaying) {
+            endGame.init('won');
+        }
+        else {
+            endGame.init('lost')
+        }
+
+        app.stage.removeChildren();
+        app.stage.addChild(endGame);
     }
 }

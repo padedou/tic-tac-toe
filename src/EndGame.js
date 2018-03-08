@@ -28,7 +28,8 @@ export default class EndGame extends PIXI.Container {
         this.init();
     }
 
-    init() {
+    init(gameResult) {
+        this.gameResult = gameResult;
         this.removeChildren();
 
         this.txtGameResult = new PIXI.Text();

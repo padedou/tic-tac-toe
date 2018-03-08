@@ -10,7 +10,7 @@ export default class Game extends PIXI.Container {
         this.getXIsPlaying = getXIsPlaying;
         this.moveMade = moveMade;
 
-        this.init();
+        //this.init();
     }
 
     init() {
@@ -90,6 +90,7 @@ export default class Game extends PIXI.Container {
         }
 
         // TODO: Maybe before adding childeren the container should be empty
+        this.removeChildren();
         arrTiles.forEach((tile) => {
             this.addChild(tile);
         });
