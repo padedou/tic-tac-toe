@@ -96,7 +96,7 @@ function checkGameEnd(xWasPlaying) {
         }
     });
 
-    if (winner !== '' || playedTiles === 9) {
+    if (winner !== '') {
         // game should end
 
         console.log(`winner: ${winner}, playedTiles: ${playedTiles}`);
@@ -110,6 +110,10 @@ function checkGameEnd(xWasPlaying) {
             endGameScreen.init('lost')
         }
 
+        app.stage.removeChildren();
+        app.stage.addChild(endGameScreen);
+    } else if (playedTiles === 9) {
+        endGameScreen.init('draw');
         app.stage.removeChildren();
         app.stage.addChild(endGameScreen);
     }
