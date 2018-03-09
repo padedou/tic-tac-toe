@@ -2,8 +2,8 @@ import * as PIXI from 'pixi.js';
 import Button from './Button';
 import Tile from './Tile';
 import StartScreen from './StartScreen';
-import Game from './Game';
-import EndGame from  './EndGame';
+import GameScreen from './GameScreen';
+import EndGameScreen from  './EndGameScreen';
 
 const app = new PIXI.Application({
     //width: 330,
@@ -14,8 +14,8 @@ const app = new PIXI.Application({
 });
 let xIsPlaying = true;
 const startScreen = new StartScreen(app.renderer.width, app.renderer.height, setPlayerAndStart);
-const game = new Game(app.renderer.width, app.renderer.height, getXIsPlaying, moveMade);
-const endGame = new EndGame(app.renderer.width, app.renderer.height, undefined, showStartScreen);
+const gameScreen = new GameScreen(app.renderer.width, app.renderer.height, getXIsPlaying, moveMade);
+const endGameScreen = new EndGameScreen(app.renderer.width, app.renderer.height, undefined, showStartScreen);
 const tileState = {
     played: false,
     x_o: ''
@@ -34,7 +34,7 @@ const winningTiles = [
 
 //app.stage.addChild(startScreen);
 //app.stage.addChild(game);
-//app.stage.addChild(endGame);
+//app.stage.addChild(endGameScreen);
 
 showStartScreen();
 
@@ -66,9 +66,9 @@ function moveMade(tile_id) {
 
 function setPlayerAndStart(x) {
     xIsPlaying = x;
-    game.init();
+    gameScreen.init();
     app.stage.removeChildren();
-    app.stage.addChild(game);
+    app.stage.addChild(gameScreen);
 }
 
 function checkGameEnd(xWasPlaying) {
@@ -102,15 +102,15 @@ function checkGameEnd(xWasPlaying) {
         console.log(`winner: ${winner}, playedTiles: ${playedTiles}`);
 
         if (winner === 'x' && xWasPlaying) {
-            endGame.init('won')
+            endGameScreen.init('won')
         } else if (winner === 'o' && !xWasPlaying) {
-            endGame.init('won');
+            endGameScreen.init('won');
         }
         else {
-            endGame.init('lost')
+            endGameScreen.init('lost')
         }
 
         app.stage.removeChildren();
-        app.stage.addChild(endGame);
+        app.stage.addChild(endGameScreen);
     }
 }

@@ -1,7 +1,7 @@
 import { colorTile, colorLine } from './colors';
 import Tile from './Tile';
 
-export default class Game extends PIXI.Container {
+export default class GameScreen extends PIXI.Container {
     constructor(appWidth, appHeight, getXIsPlaying, moveMade) {
         super();
 

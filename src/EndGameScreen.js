@@ -1,7 +1,7 @@
 import Button from './Button';
 import { colorTile, colorText, colorMarked } from './colors';
 
-export default class EndGame extends PIXI.Container {
+export default class EndGameScreen extends PIXI.Container {
     constructor(appWidth, appHeight, gameResult = 'draw', showStartScreen) {
         super();
 
