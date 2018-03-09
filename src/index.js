@@ -13,6 +13,7 @@ const app = new PIXI.Application({
     backgroundColor: 0x333333
 });
 let xIsPlaying = true;
+let playerIsX = true;
 const startScreen = new StartScreen(app.renderer.width, app.renderer.height, setPlayerAndStart);
 const gameScreen = new GameScreen(app.renderer.width, app.renderer.height, getXIsPlaying, moveMade);
 const endGameScreen = new EndGameScreen(app.renderer.width, app.renderer.height, undefined, showStartScreen);
@@ -60,18 +61,20 @@ function getXIsPlaying() {
 function moveMade(tile_id) {
     tiles[tile_id].played = true;
     tiles[tile_id].x_o = xIsPlaying ? 'x' : 'o';
-    checkGameEnd(xIsPlaying);
+    checkGameEnd();
     xIsPlaying = !xIsPlaying;
 }
 
 function setPlayerAndStart(x) {
-    xIsPlaying = x;
+    xIsPlaying = true;
+    playerIsX = x;
     gameScreen.init();
     app.stage.removeChildren();
     app.stage.addChild(gameScreen);
+    console.log(`setPlayerAndStart, playerIsX: ${playerIsX}`);
 }
 
-function checkGameEnd(xWasPlaying) {
+function checkGameEnd() {
     //let shouldEnd = false;
     let winner = '';
     let playedTiles = 0;
@@ -99,15 +102,16 @@ function checkGameEnd(xWasPlaying) {
     if (winner !== '') {
         // game should end
 
-        console.log(`winner: ${winner}, playedTiles: ${playedTiles}`);
+        console.log(`winner: ${winner}, playerIsX: ${playerIsX} playedTiles: ${playedTiles}`);
 
-        if (winner === 'x' && xWasPlaying) {
-            endGameScreen.init('won')
-        } else if (winner === 'o' && !xWasPlaying) {
+        if (winner === 'x' && !playerIsX) {
+            endGameScreen.init('lost');
+        } else if (winner === 'x' && playerIsX){
             endGameScreen.init('won');
-        }
-        else {
-            endGameScreen.init('lost')
+        } else if (winner === 'o' && !playerIsX){
+            endGameScreen.init('won');
+        } else{
+            endGameScreen.init('lost');
         }
 
         app.stage.removeChildren();
